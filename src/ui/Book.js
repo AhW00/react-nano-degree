@@ -12,7 +12,7 @@ function Book({ book }) {
         BooksCtx.update(book, shelf)
     }
     return (
-        <li>
+        <li key={book.id}>
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks?.thumbnail ?? 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sisega.com.mx%2Ftag%2Ffresh%2F&psig=AOvVaw171l2EsWIEpoTSKxeqEpbi&ust=1632334931125000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKCkn9HXkPMCFQAAAAAdAAAAABAD'})` }}></div>
