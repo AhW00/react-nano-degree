@@ -11,6 +11,7 @@ function Book({ book }) {
         setSelectedOption(shelf)
         BooksCtx.update(book, shelf)
     }
+
     return (
         <li key={book.id}>
             <div className="book">
@@ -27,8 +28,8 @@ function Book({ book }) {
                     </div>
                 </div>
                 <div className="book-title">{book.title}</div>
-                {book.authors?.map((author) => {
-                    return <div className="book-authors">{author}</div>
+                {book.authors?.map((author, index) => {
+                    return <div key={index} className="book-authors">{author}</div>
                 })}
 
             </div>

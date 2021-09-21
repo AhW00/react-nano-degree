@@ -15,6 +15,12 @@ export default function Home() {
         return () => { }
     }, [])
 
+    const shelves = [
+        { title: 'Read', key: 'read' },
+        { title: 'Want To Read', key: 'wantToRead' },
+        { title: 'Currently Reading', key: 'currentlyReading' }
+    ];
+
     return (
 
         <div className="app">
@@ -24,40 +30,19 @@ export default function Home() {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {loading && <h4>Loading...</h4>}
-                                    {!loading && allBooks != null && allBooks.filter((book) => book.shelf == 'currentlyReading').map((book) => {
-                                        return <Book key={book.id} book={book}></Book>
-                                    })}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {loading && <h4>Loading...</h4>}
-                                    {!loading && allBooks != null && allBooks.filter((book) => book.shelf == 'wantToRead').map((book) => {
-                                        return <Book key={book.id} book={book}></Book>
-                                    })}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {loading && <h4>Loading...</h4>}
-                                    {!loading && allBooks != null && allBooks.filter((book) => book.shelf == 'read')
-                                        .map((book) => {
+                        {shelves.map((shelf, index) => {
+                            return <div key={index} className="bookshelf">
+                                <h2 className="bookshelf-title">{shelf.title}</h2>
+                                <div className="bookshelf-books">
+                                    <ol className="books-grid">
+                                        {loading && <h4>Loading...</h4>}
+                                        {!loading && allBooks != null && allBooks.filter((book) => book.shelf == shelf.key).map((book) => {
                                             return <Book key={book.id} book={book}></Book>
                                         })}
-                                </ol>
+                                    </ol>
+                                </div>
                             </div>
-                        </div>
+                        })}
                     </div>
                 </div>
                 <div className="open-search">
